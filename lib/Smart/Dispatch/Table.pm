@@ -1,9 +1,16 @@
 package Smart::Dispatch::Table;
 
+BEGIN {
+	*_TYPES = $ENV{PERL_SMART_DISPATCH_TYPE_CHECKS}==42
+		? sub () { 1 }
+		: sub () { 0 };
+};
+
 use 5.010;
-use Any::Moose;
+use Moo;
 use Carp;
 use Scalar::Util qw/refaddr/;
+use if _TYPES, 'MooX::Types::MooseLike::Base', ':all';
 
 sub _swap
 {
@@ -15,7 +22,7 @@ use namespace::clean;
 
 BEGIN {
 	$Smart::Dispatch::Table::AUTHORITY = 'cpan:TOBYINK';
-	$Smart::Dispatch::Table::VERSION   = '0.002';
+	$Smart::Dispatch::Table::VERSION   = '0.003';
 }
 
 use overload
@@ -25,13 +32,14 @@ use overload
 	'+='   => 'prepend',
 	'.='   => 'append',
 	'~~'   => 'exists',
-	'bool' => sub { 1 };
+	'bool' => sub { 1 },
+;
 
 has match_list => (
+	(_TYPES?(isa=>ArrayRef()):()),
 	is        => 'rw',
-	isa       => 'ArrayRef[Smart::Dispatch::Match]',
 	required  => 1,
-	);
+);
 
 sub BUILD
 {
@@ -205,7 +213,8 @@ Smart::Dispatch::Table - a dispatch table
 
 =head1 DESCRIPTION
 
-Smart::Dispatch::Table is a Moose class. (L<Any::Moose> to be specific.)
+Smart::Dispatch::Table is a Moose class.
+(Well, L<Moo> actually, but close enough.)
 
 =head2 Constructors
 

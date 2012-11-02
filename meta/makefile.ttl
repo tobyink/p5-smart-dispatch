@@ -13,13 +13,8 @@
 		"Test::Warn",
 		"Test::More 0.61";
 	:requires
-		"Any::Moose",
-#		"Carp",              # CORE
-#		"constant",          # CORE
+		"Moo",
 		"namespace::clean",
-#		"overload",          # CORE
-#		"strict",            # CORE
-#		"Scalar::Util",      # CORE
 		"Sub::Exporter".
 
 _:main

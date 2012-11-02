@@ -4,12 +4,12 @@ use 5.010;
 use strict;
 
 use Carp;
-use Smart::Dispatch::Table;
-use Smart::Dispatch::Match;
+use Smart::Dispatch::Table ();
+use Smart::Dispatch::Match ();
 
 BEGIN {
 	$Smart::Dispatch::AUTHORITY = 'cpan:TOBYINK';
-	$Smart::Dispatch::VERSION   = '0.002';
+	$Smart::Dispatch::VERSION   = '0.003';
 }
 
 use constant DEFAULT_MATCH_CLASS => (__PACKAGE__.'::Match');
@@ -33,19 +33,19 @@ use Sub::Exporter -setup => {
 		otherwise    => \&_build_otherwise,
 		dispatch     => \&_build_dispatch,
 		failover     => \&_build_failover,
-		],
+	],
 	groups => [
 		default      => [@EXPORT],
 		tiny         => [qw/dispatcher match/],
-		],
+	],
 	collectors => [qw/class/],
-	};
+};
 
 sub _build_dispatcher
 {
 	my ($class, $name, $arg, $col) = @_;
 	my $table_class =
-		   $arg->{class}
+		$arg->{class}
 		// $col->{class}{table}
 		// DEFAULT_TABLE_CLASS;
 	
@@ -63,7 +63,7 @@ sub _build_match
 {
 	my ($class, $name, $arg, $col) = @_;
 	my $match_class =
-		   $arg->{class}
+		$arg->{class}
 		// $col->{class}{match}
 		// DEFAULT_MATCH_CLASS;
 	
@@ -80,7 +80,7 @@ sub _build_match_using
 {
 	my ($class, $name, $arg, $col) = @_;
 	my $match_class =
-		   $arg->{class}
+		$arg->{class}
 		// $col->{class}{match}
 		// DEFAULT_MATCH_CLASS;
 	
@@ -97,7 +97,7 @@ sub _build_otherwise
 {
 	my ($class, $name, $arg, $col) = @_;
 	my $match_class =
-		   $arg->{class}
+		$arg->{class}
 		// $col->{class}{match}
 		// DEFAULT_MATCH_CLASS;
 	
