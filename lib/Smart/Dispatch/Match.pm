@@ -26,10 +26,9 @@ use constant {
 };
 
 use overload
-	'&{}'  => sub { my $x=shift; sub { $x->conduct_dispatch($_[0]) } },
-	'~~'   => 'value_matches',
-	'0+'   => 'bitflags',
-	'bool' => 'bitflags',
+	'&{}'    => sub { my $x=shift; sub { $x->conduct_dispatch($_[0]) } },
+	'~~'     => 'value_matches',
+	bool     => sub { 1 },
 ;
 
 has test => (

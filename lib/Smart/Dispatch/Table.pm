@@ -9,7 +9,7 @@ BEGIN {
 use 5.010;
 use Moo;
 use Carp;
-use Scalar::Util qw/refaddr/;
+use Scalar::Util qw/ refaddr blessed /;
 use if _TYPES, 'MooX::Types::MooseLike::Base', ':all';
 
 sub _swap
@@ -26,13 +26,13 @@ BEGIN {
 }
 
 use overload
-	'&{}'  => sub { my $x=shift; sub { $x->action($_[0]) } },
-	'+'    => sub { __PACKAGE__->make_combined(reverse _swap(@_)) },
-	'.'    => sub { __PACKAGE__->make_combined(_swap(@_)) },
-	'+='   => 'prepend',
-	'.='   => 'append',
-	'~~'   => 'exists',
-	'bool' => sub { 1 },
+	'&{}'    => sub { my $x=shift; sub { $x->action($_[0]) } },
+	'+'      => sub { __PACKAGE__->make_combined(reverse _swap(@_)) },
+	'.'      => sub { __PACKAGE__->make_combined(_swap(@_)) },
+	'+='     => 'prepend',
+	'.='     => 'append',
+	'~~'     => 'exists',
+	'bool'   => sub { 1 },
 ;
 
 has match_list => (
@@ -119,6 +119,7 @@ sub append
 	my $self = shift;
 	foreach my $other (@_)
 	{
+		next unless defined $other;
 		carp "Cannot add non-reference to dispatch table"
 			unless ref $other;
 		carp "Cannot add non-blessed reference to dispatch table"
@@ -130,7 +131,7 @@ sub append
 				$self->conditional_matches,
 				$other->conditional_matches,
 				($self->unconditional_matches ? $self->unconditional_matches : $other->unconditional_matches),
-				]);
+			]);
 		}
 		elsif ($other->isa('Smart::Dispatch::Match')
 		and not $other->is_unconditional)
@@ -139,7 +140,7 @@ sub append
 				$self->conditional_matches,
 				$other,
 				$self->unconditional_matches,
-				]);
+			]);
 		}
 		elsif ($other->isa('Smart::Dispatch::Match')
 		and $other->is_unconditional)
@@ -147,7 +148,7 @@ sub append
 			$self->match_list([
 				$self->conditional_matches,
 				($self->unconditional_matches ? $self->conditional_matches : $other),
-				]);
+			]);
 		}
 		else
 		{
@@ -164,6 +165,7 @@ sub prepend
 	my $self = shift;
 	foreach my $other (@_)
 	{
+		next unless defined $other;
 		carp "Cannot add non-reference to dispatch table"
 			unless ref $other;
 		carp "Cannot add non-blessed reference to dispatch table"
@@ -175,7 +177,7 @@ sub prepend
 				$other->conditional_matches,
 				$self->conditional_matches,
 				($other->unconditional_matches ? $other->unconditional_matches : $self->unconditional_matches),
-				]);
+			]);
 		}
 		elsif ($other->isa('Smart::Dispatch::Match')
 		and not $other->is_unconditional)
@@ -184,7 +186,7 @@ sub prepend
 				$other,
 				$self->conditional_matches,
 				$self->unconditional_matches,
-				]);
+			]);
 		}
 		elsif ($other->isa('Smart::Dispatch::Match')
 		and $other->is_unconditional)
@@ -192,7 +194,7 @@ sub prepend
 			$self->conditions([
 				$self->conditional_matches,
 				$other,
-				]);
+			]);
 		}
 		else
 		{
