@@ -17,7 +17,7 @@ use constant DEFAULT_TABLE_CLASS => (__PACKAGE__.'::Table');
 
 our ($IN_FLIGHT, @LIST, @EXPORT);
 BEGIN
-{	
+{
 	$Carp::Internal{$_}++
 		foreach (__PACKAGE__, DEFAULT_MATCH_CLASS, DEFAULT_TABLE_CLASS);
 	$IN_FLIGHT = 0;

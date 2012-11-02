@@ -298,6 +298,12 @@ good practice to all this method to check you've not broken it.
 
 =back
 
+=begin private
+
+=item BUILD
+
+=end private
+
 =head2 Overloads
 
 Smart::Dispatch::Table overloads various operations. (See L<overload>.)

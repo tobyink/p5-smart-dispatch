@@ -1,7 +1,5 @@
 use 5.010;
 use strict;
-use lib "lib";
-use Data::Dumper;
 use Smart::Dispatch;
 
 sub action_1_to_999 {
@@ -32,7 +30,7 @@ say $dispatch->(23);  # guess!
 
 # call dispatch table on '999999' but only if the dispatch table
 # has an entry that covers value '-1'.
-say $dispatch->(999999) if $dispatch ~~ -1; 
+say $dispatch->(999999) if $dispatch ~~ -1;
 
 # call dispatch table on '1000' but only if the dispatch table
 # has an entry that covers value '4'.

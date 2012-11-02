@@ -28,6 +28,12 @@ Syntax::Feature::Dispatcher - use syntax qw/dispatcher/
 
 Tiny shim between L<Smart::Dispatch> and L<syntax>.
 
+=begin private
+
+=item install
+
+=end private
+
 =head1 BUGS
 
 Please report any bugs to
