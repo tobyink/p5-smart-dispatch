@@ -1,0 +1,18 @@
+# This file acts as the project's changelog.
+
+`Smart-Dispatch 0.001 cpan:TOBYINK`
+	issued  2012-02-20;
+	label   "Initial release".
+
+`Smart-Dispatch 0.002 cpan:TOBYINK`
+	issued  2012-02-20;
+	changeset [
+		item "Syntax::Feature::Dispatcher"^^Addition;
+	].
+
+`Smart-Dispatch 0.003 cpan:TOBYINK`
+	issued  2012-11-05;
+	label   "Remember, remember";
+	changeset [
+		item "Port from Any::Mouse to Moo."^^Update;
+	].
