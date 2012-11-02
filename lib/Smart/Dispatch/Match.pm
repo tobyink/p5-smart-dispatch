@@ -57,6 +57,12 @@ has note => (
 	required  => 0,
 );
 
+has bitflags => (
+	(_TYPES?(isa=>Num()):()),
+	is        => 'lazy',
+	init_arg  => undef,
+);
+
 has is_failover => (
 	(_TYPES?(isa=>Bool()):()),
 	is        => 'ro',
@@ -71,7 +77,7 @@ has is_unconditional => (
 	default   => sub { 0 },
 );
 
-sub bitflags
+sub _build_bitflags
 {
 	my ($self) = @_;
 	my $rv = 1;
@@ -206,8 +212,6 @@ Smart::Dispatch::Match overloads various operations. (See L<overload>.)
 =over
 
 =item * B<< code derefernce >> C<< &{} >> - C<conduct_dispatch>.
-
-=item * B<< numeric context >> C<< +0 >> - C<bitflags>.
 
 =item * B<< smart match >> C<< ~~ >> - C<value_matches>.
 
