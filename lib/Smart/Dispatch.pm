@@ -25,6 +25,7 @@ BEGIN
 	@EXPORT    = qw/dispatcher match match_using otherwise dispatch failover/;
 }
 
+use namespace::clean ();
 use Sub::Exporter -setup => {
 	exports => [
 		dispatcher   => \&_build_dispatcher,
@@ -39,6 +40,13 @@ use Sub::Exporter -setup => {
 		tiny         => [qw/dispatcher match/],
 	],
 	collectors => [qw/class/],
+	installer => sub {
+		namespace::clean::->import(
+			-cleanee => $_[0]{into},
+			grep { !ref } @{ $_[1] },
+		);
+		goto \&Sub::Exporter::default_installer;
+	},
 };
 
 sub _build_dispatcher
@@ -208,6 +216,10 @@ Smart::Dispatch is an attempt to combine some of the more useful features of
 C<given> with dispatch tables.
 
 =head2 Building a Dispatch Table
+
+All the keywords used a build a dispatch table are lexical subs, which
+means that you can import them into a particular code block and they
+will not be available outside that block.
 
 =head3 C<< dispatcher { CODE } >>
 

@@ -15,4 +15,5 @@
 	label   "Remember, remember";
 	changeset [
 		item "Port from Any::Mouse to Moo."^^Update;
+		item "Use namespace::clean to lexicalize exported subs."^^Change;
 	].
