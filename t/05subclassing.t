@@ -6,13 +6,13 @@ use Carp;
 
 {
 	package Local::CustomDispatch::Table;
-	use Any::Moose;
+	use Moo;
 	extends 'Smart::Dispatch::Table';
 }
 
 {
 	package Local::CustomDispatch::Match;
-	use Any::Moose;
+	use Moo;
 	extends 'Smart::Dispatch::Match';
 }
 

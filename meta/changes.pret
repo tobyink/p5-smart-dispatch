@@ -17,3 +17,14 @@
 		item "Port from Any::Mouse to Moo."^^Update;
 		item "Use namespace::clean to lexicalize exported subs."^^Change;
 	].
+
+`Smart-Dispatch 0.004 cpan:TOBYINK`
+	issued  2012-12-03;
+	changeset [
+		item [
+			a dcs:Bugfix;
+			dcs:fixes RT#81658;
+			dcs:thanks cpan:ANDK;
+			label "Remove traces of Any::Moose from test cases.";
+		];
+	].
