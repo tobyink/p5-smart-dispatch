@@ -5,7 +5,7 @@ use strict;
 
 BEGIN {
 	$Syntax::Feature::Dispatcher::AUTHORITY = 'cpan:TOBYINK';
-	$Syntax::Feature::Dispatcher::VERSION   = '0.004';
+	$Syntax::Feature::Dispatcher::VERSION   = '0.005';
 }
 
 sub install
