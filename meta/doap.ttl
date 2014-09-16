@@ -14,6 +14,7 @@
 	:homepage       <https://metacpan.org/release/Smart-Dispatch> ;
 	:download-page  <https://metacpan.org/release/Smart-Dispatch> ;
 	:bug-database   <http://rt.cpan.org/Dist/Display.html?Queue=Smart-Dispatch> ;
+	:repository     [ a :GitRepository; :browse <https://github.com/tobyink/p5-smart-dispatch> ];
 	:created        "2012-02-20"^^xsd:date ;
 	:license        <http://dev.perl.org/licenses/> ;
 	:maintainer     [ a foaf:Person ; foaf:name "Toby Inkster" ; foaf:mbox <mailto:tobyink@cpan.org> ] .
