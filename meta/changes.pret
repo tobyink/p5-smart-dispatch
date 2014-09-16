@@ -35,3 +35,9 @@
 		item "Switch to Dist::Inkt."^^Packaging;
 	].
 
+`Smart-Dispatch 0.006 cpan:TOBYINK`
+	issued    2014-09-16;
+	changeset [
+		item "Add repo link."^^Packaging;
+	].
+
