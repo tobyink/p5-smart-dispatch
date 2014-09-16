@@ -3,6 +3,8 @@ use Test::More tests => 17;
 use Test::Warn;
 use Carp;
 
+no warnings;
+
 sub action_1_to_999 {
 	"1 to 999";
 }
