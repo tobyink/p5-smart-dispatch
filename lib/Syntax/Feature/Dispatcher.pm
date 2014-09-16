@@ -2,6 +2,7 @@ package Syntax::Feature::Dispatcher;
 
 use 5.010;
 use strict;
+use warnings;
 
 BEGIN {
 	$Syntax::Feature::Dispatcher::AUTHORITY = 'cpan:TOBYINK';

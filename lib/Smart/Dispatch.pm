@@ -2,6 +2,7 @@ package Smart::Dispatch;
 
 use 5.010;
 use strict;
+use warnings;
 
 use Carp;
 use Smart::Dispatch::Table ();
